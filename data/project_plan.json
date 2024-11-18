@@ -1,0 +1,25 @@
+{
+    "project_id": "P002",
+    "project_name": "Building B Expansion",
+    "start_date": "2023-03-01",
+    "end_date": "2023-09-30",
+    "status": "In Progress",
+    "budget": 750000,
+    "team_members": [
+        "Alice Johnson",
+        "Bob Lee",
+        "Carol Nguyen"
+    ],
+    "milestones": [
+        {
+            "milestone_id": "M1",
+            "description": "Foundation completed",
+            "due_date": "2023-04-15"
+        },
+        {
+            "milestone_id": "M2",
+            "description": "Framing completed",
+            "due_date": "2023-06-01"
+        }
+    ]
+}

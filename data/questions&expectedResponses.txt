@@ -1,0 +1,52 @@
+Test Prompt 1: Scaffolding Safety Guidelines
+User Query:
+"What are the safety guidelines for scaffolding?"
+Expected Output:
+The response should include:
+•	Scaffolds must support at least four times the maximum intended load.
+•	Guardrails are required on all open sides and ends.
+•	Inspections must be conducted before each work shift.
+•	Fall protection systems must be used when working at heights above 10 feet.
+•	Personal protective equipment (PPE) must be worn at all times.
+________________________________________
+
+Test Prompt 2: Maintenance Logs
+User Query:
+"What types of maintenance tasks were performed in Building A in 2023?"
+Expected Output:
+The response should include:
+•	Inspection: Checked structural integrity of the main support beams (performed by John Doe on 2023-01-15).
+•	Repair: Repaired leaking pipe in the basement (performed by Jane Smith on 2023-02-10).
+________________________________________
+
+Test Prompt 3: Project Plan
+User Query:
+"What are the key milestones for the Building B Expansion project?"
+Expected Output:
+The response should include:
+•	Foundation completed by 2023-04-15.
+•	Framing completed by 2023-06-01.
+________________________________________
+
+Test Prompt 4: FAQs on Structural Standards
+User Query:
+"What is the standard load-bearing capacity for residential building foundations?"
+Expected Output:
+The response should include:
+•	The standard load-bearing capacity is typically 1,500 pounds per square foot but can vary based on soil conditions.
+________________________________________
+
+Test Prompt 5: General Safety Standards
+User Query:
+"How often should structural inspections be conducted on commercial buildings?"
+Expected Output:
+The response should include:
+•	Structural inspections should be conducted annually or after any significant events such as earthquakes or severe storms.
+________________________________________
+
+Test Prompt 6: Fall Protection Systems
+User Query:
+"At what height are fall protection systems required?"
+Expected Output:
+The response should include:
+•	Fall protection systems must be used when working at heights above 10 feet.

@@ -38,27 +38,33 @@ This Retrieval-Augmented Generation (RAG) system combines information retrieval 
 ## Setup and Installation
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/vbchivu/ragProject
    cd ragProject
 
 2. Install dependencies:
+
    ```bash
    pip install -r requirements.txt
 
 3. Install Accelerate for memory-efficient model loading:
+
    ```bash
    pip install "accelerate>=0.26.0"
 
 4. Run the system:
+
    ```bash
    streamlit run app.py
 
 ## Usage
+
 1. Prepare Documents
     - Place your documents in a directory (e.g., data).
 
 2. Start the Application
+
     ```bash
     streamlit run app.py
 
@@ -74,6 +80,7 @@ This Retrieval-Augmented Generation (RAG) system combines information retrieval 
     - Enter your query in the app and receive tailored responses based on the selected settings.
 
 ## Next Steps and Enhancements
+
 1. Model Expansion
     - Add support for more models like gpt-3, falcon, or other domain-specific models.
 
@@ -96,7 +103,9 @@ This Retrieval-Augmented Generation (RAG) system combines information retrieval 
     - Explore advanced embedding techniques (e.g., OpenAI Embeddings) for improved document similarity.
 
 ## Acknowledgments
+
 This system leverages the following technologies and frameworks:
+
 - Hugging Face Transformers for model loading and generation.
 - Sentence Transformers for document embeddings.
 - FAISS for fast similarity searches.

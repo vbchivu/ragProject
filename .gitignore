@@ -1,3 +1,75 @@
+# --- Python & Virtual Environments ---
+# Ignore Python bytecode and cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore virtual environment folders
+venv/
+.venv/
 env/
+.env/
+env.bak/
+.env.bak/
+
+# Ignore distribution and build artifacts
+dist/
+build/
+*.egg-info/
+*.egg
+
+
+# --- Dependency & Package Files ---
+# Ignore package manager files
+pip-log.txt
+pip-delete-this-directory.txt
+.web-env/
+
+
+# --- Model & Library Caches ---
+# Ignore Hugging Face Transformers/SentenceTransformers model cache
+.cache/
+huggingface/
+
+# Ignore Streamlit cache and secrets
+.streamlit/secrets.toml
+.streamlit/config.toml
+
+# Ignore Faiss index files if you save them to disk
+*.index
+*.faiss
+
+# Ignore pytest cache
+.pytest_cache/
+
+
+# --- IDEs and Editors ---
+# Ignore Visual Studio Code settings
+.vscode/
+
+# Ignore JetBrains (PyCharm) settings
+.idea/
+
+# Ignore Vim/Neovim swap files
+*.swp
+*.swo
+
+
+# --- OS-specific files ---
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+
+
+# --- Project Specific Data ---
 testEnvironment/
 versions/
+data/

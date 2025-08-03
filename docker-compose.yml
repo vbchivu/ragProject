@@ -1,0 +1,19 @@
+services:
+  # Define the service for our RAG application.
+  rag-app:
+    # Tell Docker Compose to build the image from the Dockerfile
+    # in the current directory ('.').
+    build: .
+    # Name the container for easier identification.
+    container_name: rag_engineering_assistant
+    # Map port 8501 on the host machine to port 8501 inside the container.
+    # This lets you access the Streamlit app at http://localhost:8501.
+    ports:
+      - "8501:8501"
+    # Mount the entire current project directory into the /app directory
+    # inside the container. This is a "volume mount".
+    # Any changes you make to your local code will be immediately reflected
+    # inside the container without needing to rebuild the image, which is
+    # perfect for development.
+    volumes:
+      - .:/app

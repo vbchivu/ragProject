@@ -1,114 +1,191 @@
+
 # Retrieval-Augmented Generation (RAG) System
 
 ## Overview
 
-This Retrieval-Augmented Generation (RAG) system combines information retrieval and generative AI capabilities to answer user queries based on provided documents. It incorporates various natural language processing techniques and deep learning models to efficiently retrieve relevant documents, process user queries, and generate informative and context-aware responses.
+This Retrieval-Augmented Generation (RAG) system combines information retrieval with generative AI to answer user queries based on a provided document corpus. The system ingests and processes documents, creates an efficient search index, retrieves relevant context for a user's query, and then uses a large language model to generate an informative, context-aware response.
 
----
+This project has been architected to be modular and scalable, with a focus on retrieval quality and user experience.
 
 ## Key Features
 
-1. **Multi-Model Support**  
-   - Seamlessly integrates multiple models (`distilgpt2`, `flan-t5-small`, `flan-t5-base`, `flan-t5-large`).  
-   - Allows users to choose between speed, precision, and creativity based on their requirements.
+### Advanced Data Processing 📄
 
-2. **Customizable Query Responses**  
-   - Offers flexibility to prioritize:
-     - **Precision**: Focus on accurate, fact-based answers.
-     - **Creativity**: Generate detailed, narrative-like responses.
-     - **Conciseness**: Provide brief, direct answers.
-     - **Default**: Balance between all traits.
+- Supports ingestion of .txt, .csv, .json, and .pdf files.
+- Intelligently processes documents by splitting large texts into smaller, overlapping chunks and treating CSV rows as individual records for more precise context retrieval.
 
-3. **Memory-Efficient Model Loading**  
-   - Utilizes the `Accelerate` library for optimized memory usage, enabling smooth operation on both GPUs and CPUs.
+### Multi-Model Support 🧠
 
-4. **Flexible Document Ingestion**  
-   - Supports ingestion of `.txt`, `.csv`, `.json`, and `.pdf` files.  
-   - Preprocesses and embeds documents using `SentenceTransformer` and FAISS for efficient retrieval.
+- Seamlessly integrates multiple Hugging Face models, including distilgpt2 and the flan-t5 series.
+- The architecture is configured to easily add new models.
 
-5. **Interactive Streamlit Interface**  
-   - Intuitive UI for easy interaction.  
-   - Provides options to ingest data, select models, and customize query preferences.
+### Customizable Query Responses 🎛️
 
-6. **Accelerated Retrieval and Generation**  
-   - Combines FAISS for fast document similarity searches with generative models for high-quality, context-aware answers.
+Offers flexibility for users to tailor the tone and style of the generated response by prioritizing:
 
----
+- **Precision**: Accurate, fact-based answers.
+- **Creativity**: Detailed, narrative-like responses.
+- **Conciseness**: Brief, direct answers.
+
+### Efficient Model & Data Handling ⚡
+
+- Utilizes Docker volumes or local caching to persist models and data indices, ensuring fast and responsive performance after the initial setup.
+
+### Optimized Retrieval 🔍
+
+- Combines SentenceTransformer embeddings with a high-speed FAISS vector index for efficient and accurate document similarity searches.
+
+### Interactive Streamlit Interface ✨
+
+- An intuitive UI allows users to easily ingest data, select models, customize response preferences, and interact with the RAG system.
+
+## System Requirements
+
+⚠️ **Important: High Disk Space Requirement**
+
+This is a heavyweight AI application that requires a significant amount of disk space, regardless of the installation method.
+
+- **Initial Size:** Expect the application to consume over 7 GB of disk space after the initial setup.
+
+**Why so large?** The storage is primarily used by:
+
+- **Language Models (LLMs):** Models like flan-t5-large are over 3 GB each.
+- **PyTorch Framework:** The deep learning library and its CUDA components are several gigabytes.
+- **Model Caches:** Hugging Face and SentenceTransformers cache the downloaded models to avoid re-downloading them.
+- **Future Growth:** The required space will grow as you ingest more documents or experiment with larger models.
 
 ## Setup and Installation
 
-1. Clone the repository:
+You can run this project using either Docker (recommended for a clean, isolated environment) or a local Python environment.
 
-   ```bash
-   git clone https://github.com/vbchivu/ragProject
-   cd ragProject
+### Option 1: Using Docker (Recommended)
 
-2. Install dependencies:
+This method uses Docker and Docker Compose to ensure a consistent, reproducible environment.
 
-   ```bash
-   pip install -r requirements.txt
+#### Prerequisites
 
-3. Install Accelerate for memory-efficient model loading:
+- Docker installed and running on your system.
+- Git for cloning the repository.
 
-   ```bash
-   pip install "accelerate>=0.26.0"
+#### 1. Clone the repository
 
-4. Run the system:
+```bash
+git clone https://github.com/vbchivu/ragProject
+cd ragProject
+```
 
-   ```bash
-   streamlit run app.py
+#### 2. Prepare Your Documents
+
+Place your `.txt`, `.csv`, `.json`, or `.pdf` files into the `data/` directory.
+
+#### 3. Build and Run the Container
+
+From the root of the project directory, run:
+
+```bash
+docker-compose up --build
+```
+
+This command will build the Docker image, download all models (this will take a while on the first run), and launch the Streamlit application.
+
+#### 4. Access the Application
+
+Open your web browser and navigate to:  
+[http://localhost:8501](http://localhost:8501)
+
+### Option 2: Local Python Environment
+
+This method involves setting up a local Python environment and installing dependencies directly.
+
+#### Prerequisites
+
+- Python 3.9+
+- Git
+
+#### 1. Clone the repository
+
+```bash
+git clone https://github.com/vbchivu/ragProject
+cd ragProject
+```
+
+#### 2. Create a Virtual Environment (Recommended)
+
+It's a best practice to use a virtual environment to manage project-specific dependencies.
+
+```bash
+# Create the virtual environment
+python -m venv .venv
+
+# Activate the virtual environment
+# On Windows:
+.venv\Scripts\activate
+# On macOS/Linux:
+source .venv/bin/activate
+```
+
+#### 3. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+#### 4. Run the Application
+
+Once the dependencies are installed, run the Streamlit application:
+
+```bash
+streamlit run app.py
+```
 
 ## Usage
 
-1. Prepare Documents
-    - Place your documents in a directory (e.g., data).
-
-2. Start the Application
-
-    ```bash
-    streamlit run app.py
-
-3. Ingest Documents
-    - Provide the directory path in the app to ingest documents.
-    - The system will preprocess the documents and create an index.
-
-4. Select Preferences and Models
-    - Choose a model based on speed and response quality.
-    - Customize query preferences for precision, creativity, or conciseness.
-
-5. Ask Questions
-    - Enter your query in the app and receive tailored responses based on the selected settings.
+1. **Prepare Documents:** Place your `.txt`, `.csv`, `.json`, or `.pdf` files into a directory (default is `data/`).
+2. **Start the Application:** Run using Docker or local environment.
+3. **Ingest Documents:** Use the "Ingest Data" button to process documents and create a search index.
+4. **Select Preferences:** Choose a model and a response preference.
+5. **Ask Questions:** Enter a query and receive a tailored response from your documents.
 
 ## Next Steps and Enhancements
 
-1. Model Expansion
-    - Add support for more models like gpt-3, falcon, or other domain-specific models.
+Our roadmap is focused on improving the core quality of the RAG pipeline and ensuring the system is robust and scalable.
 
-2. Advanced Query Preferences
-    - Introduce additional query preferences like "explanatory," "summarized," or "comparative."
+### Priority 1: Enhance Core RAG Quality & Robustness
 
-3. Fine-Tuning
-    - Fine-tune models on domain-specific datasets for improved precision.
+#### Upgrade to a Persistent Vector Database
 
-4. Batch Query Support
-    - Allow batch processing of queries for large-scale use cases.
+- **What:** Replace the current in-memory FAISS index with a persistent, on-disk vector database like ChromaDB or LanceDB.
+- **Why:** This will make the ingestion step a one-time process, allowing the app to start instantly with a pre-built index. It's a critical step for practical usability and scalability.
 
-5. Caching
-    - Implement caching mechanisms for repeated queries to reduce response time.
+#### Implement a Re-ranking Step
 
-6. Scalability
-    - Integrate distributed systems to support larger datasets and more concurrent users.
+- **What:** After retrieving an initial set of documents from the vector search (e.g., top 20), use a more sophisticated cross-encoder model to re-rank these results and pass only the most relevant ones (e.g., top 3-5) to the LLM.
+- **Why:** This is a powerful technique to significantly boost retrieval accuracy and, consequently, the quality of the final answer.
 
-7. Enhanced Retrieval
-    - Explore advanced embedding techniques (e.g., OpenAI Embeddings) for improved document similarity.
+#### Implement Query Caching
+
+- **What:** Cache the final answers for previously asked questions.
+- **Why:** To provide instant responses for repeated queries and improve the user's perception of the app's performance.
+
+### Priority 2: Long-Term Growth and Specialization
+
+#### Pursue Model Fine-Tuning
+
+- **What:** Fine-tune an open-source model (like a FLAN-T5 or Llama variant) on a high-quality, domain-specific dataset.
+- **Why:** To improve precision and response quality for specialized subject matter beyond what a general-purpose model can offer.
+
+#### Expand Model and Embedding Options
+
+- **What:** Integrate more powerful embedding models and LLMs as they become available.
+- **Why:** To continuously leverage state-of-the-art technology for the best possible performance.
 
 ## Acknowledgments
 
-This system leverages the following technologies and frameworks:
+This system leverages the following outstanding technologies and frameworks:
 
-- Hugging Face Transformers for model loading and generation.
-- Sentence Transformers for document embeddings.
-- FAISS for fast similarity searches.
-- Streamlit for the interactive user interface.
-
-### Feel free to contribute to the project or provide feedback for improvements. 🚀
+- **Docker**: For containerization and reproducible environments.
+- **Hugging Face Transformers**: For state-of-the-art model loading and generation.
+- **Sentence Transformers**: For high-quality document embeddings.
+- **FAISS**: For fast and efficient vector similarity searches.
+- **LangChain**: For robust text splitting and chunking.
+- **Streamlit**: For creating the interactive user interface.
